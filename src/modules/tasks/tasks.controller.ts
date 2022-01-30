@@ -11,7 +11,6 @@ import {
 import { CreateTaskDto } from './dto/create-task.dto';
 import { GetTasksDto } from './dto/get-tasks.dto';
 import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
-import { TaskStatus } from './enum/task-status.enum';
 import { TasksService } from './tasks.service';
 
 @Controller('tasks')
@@ -20,11 +19,7 @@ export class TasksController {
 
   @Get('')
   getTasks(@Query() filterDto: GetTasksDto) {
-    if (Object.keys(filterDto).length) {
-      return this.tasksService.getTasksWithFilters(filterDto);
-    }
-
-    return this.tasksService.getAllTasks();
+    return this.tasksService.getTasks(filterDto);
   }
 
   @Post()
